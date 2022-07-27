@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>邮件模板</title>
+</head>
+<body>
+<div style="padding: 20px 50px;">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"># 今天的日期</h3>
+        </div>
+        <div class="panel-body">
+            <div>
+                <!--/*@thymesVar id="dsResult" type="ch"*/-->
+                <p th:text="${dsResult}">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

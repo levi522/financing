@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.r3.financing.dao.RegisterCodeMapper">
+
+
+    <insert id="insertRegisterCode" parameterType="com.r3.financing.bean.RegisterCode">
+        insert into register_code(code,created_date,status) values(#{code},#{createdDate},#{status})
+    </insert>
+
+
+    <update id="updateStatus">
+        update register_code set status = 1 where id = #{id}
+    </update>
+
+    <select id="queryRegisterCode" resultType="com.r3.financing.bean.RegisterCode">
+        SELECT
+            id,
+            code,
+            STATUS,
+            created_date createdDate
+        FROM
+            register_code
+        where status = 0
+    </select>
+
+    <select id="queryRegisterCodeByCode" resultType="java.lang.Integer">
+        select count(1) from register_code where code=#{code}
+    </select>
+
+    <select id="queryRegisterCodeByCodeActive" resultType="java.lang.Integer">
+        select count(1) from register_code where code=#{code} and status = 0
+    </select>
+
+</mapper>

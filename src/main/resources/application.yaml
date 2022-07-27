@@ -1,0 +1,103 @@
+server:
+  port: 8083
+  tomcat:
+    uri-encoding: UTF-8
+    max-http-header-size: 3145728
+    accept-count: 100
+    max-connections: 10000
+    max-threads: 200
+    min-spare-threads: 10
+    max-swallow-size: 2MB
+    max-http-post-size: 2MB
+    accesslog:
+      enabled: true
+      directory: logs
+      file-date-format: yyyy-mm-dd
+      prefix: access_log
+      suffix: .log
+      rotate: true
+#    servlet:
+#      context-path: /financing
+  connection-timeout: 10s
+  max-http-header-size: 8KB
+  address: localhost
+spring:
+  application:
+    name: marketplace
+  allow-circular-references: true
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/financing?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    minPoolSize: 10
+    maxPoolSize: 1000
+    initialPoolSize: 10
+    maxIdleTime: 60000
+    acquireIncrement: 5
+    maxStatements: 0
+    idleConnectionTestPeriod: 60
+    acquireRetryAttempts: 5
+    acquireRetryDelay: 1000
+    breakAfterAcquireFailure: false
+    testConnectionOnCheckout: false
+    numHelperThreads: 10
+    checkoutTimeout: 100
+    maxWait: 30000
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 3000
+    password: redispassword
+    jedis:
+      pool:
+        max-wait: 1000
+        max-active: 300
+        max-idle: 10
+  http:
+    encoding:
+      charset: utf-8
+      force: true
+      enabled: true
+  jpa:
+    show-sql: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  main:
+    allow-bean-definition-overriding: true
+  servlet:
+    multipart:
+      #??????
+      max-file-size: 100MB
+      #?????
+      max-request-size: 10000MB
+  mail:
+    host: smtp.163.com
+    username: levi522@163.com
+    password: YUNWTYEPBDRMEWYP
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
+        debug: true
+mybatis:
+  mapper-locations: classpath*:mapper-xml/*Mapper.xml
+  type-aliases-package: com.r3.financing.bean
+#****************??Async?????*******************
+async: # Async??? ??
+  executor:
+    corepoolsize: 50
+    maxpoolsize: 500
+    queuecapacity: 50
+    keepaliveseconds: 200
+    threadnameprefix: appasync
+    awaitterminationseconds: 60
+#*****************??Async?????******************
+jwt:
+  secret: abasdgdsgsdgdsgsdgdsgdsagdsaggegsdh
